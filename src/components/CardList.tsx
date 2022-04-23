@@ -1,4 +1,4 @@
-import {Flex, Text, Image, Box} from "@chakra-ui/react"
+import {Flex, Text, Heading, Image, Box} from "@chakra-ui/react"
 import { useEffect, useState } from "react";
 import { api } from "../services/api";
 
@@ -39,20 +39,20 @@ export function CardList(){
     }, [])
 
     return(
-        <Flex direction={"column"} bg="#214B6B" color="brand.white">
+        <Flex direction={"column"} bg="brand.darkblue" color="brand.white">
             {games.map (game => (
                 <Box key={game.id} m={6} borderRadius='lg' bg="#17202D">
-                     <Flex>
-                        <Image src={game.image} alt={game.title}></Image>
-                        <Box p={4}>
-                            <Text>{game.title}</Text>
+                     <Flex h="245px" >
+                        <Image borderLeftRadius="8px"  w="50%" src={game.image} alt={game.title}></Image>
+                        <Box pr={4} pl={4} pt={8} w="100%">
+                            <Heading fontSize="28px" fontWeight="semibold">{game.title}</Heading>
                             <Flex>
                                 {game.tags.map( (tag) => (
-                                    <Text>{tag},&nbsp;</Text>
+                                    <Text key={tag} fontSize="20px" fontWeight="normal" opacity={0.5}>{tag},&nbsp;</Text>
                                 ))}
                             </Flex>
                          
-                            <Text>{game.price}</Text>
+                            <Heading fontSize="40px" fontWeight="bold" align="right">${game.price}</Heading>
                         </Box>
                      </Flex>
                      
