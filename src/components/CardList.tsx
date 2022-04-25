@@ -41,20 +41,21 @@ export function CardList(){
     return(
         <Flex direction={"column"} bg="brand.darkblue" color="brand.white">
             {games.map (game => (
-                <Box key={game.id} m={6} borderRadius='lg' bg="#17202D">
+                <Box key={game.id} mr="68px" ml="68px" mt="20px" mb="20px" borderRadius="30px" bg="#17202D">
                      <Flex h="245px">
-                        <ImageUi borderLeftRadius="8px"  w="50%" src={game.image} alt={game.title}></ImageUi>
-                        <Flex justifyContent="space-between" pr={4} pl={4} pt={10} pb={5} w="100%" pos="relative">
+                        <ImageUi borderLeftRadius="30px" w="50%" src={game.image} alt={game.title}></ImageUi>
+                        <Flex justifyContent="space-between" pl="51px" pt="53px" pb="34px" pr="34px" w="100%" pos="relative">
                             <Box>
-                                <Heading fontSize="28px" fontWeight="semibold">{game.title}</Heading>
-                                <Flex wrap="wrap">
-                                    {game.tags.map( (tag, id) => {
+                                <Heading fontSize="28px" fontWeight="semibold" lineHeight="26.77px" >{game.title}</Heading>
+                                <Flex wrap="wrap" mt="12px">
+                                    {
+                                    game.tags.map( (tag, id) => {
                                         const separator = (id === game.tags.length - 1) ? "" : "," 
-                                        return <Text key={tag} fontSize="20px" fontWeight="normal" opacity={0.5}>{tag+separator}&nbsp;</Text>
+                                        return <Text key={tag} fontSize="20px"  lineHeight="19.12px" fontWeight="normal" opacity={0.5}>{tag+separator}&nbsp;</Text>
                                     })
                                     }
                                 </Flex>
-                                <Box mt="25px" h="10px" w="217px" borderRadius="20px" bg="#214B6B" >
+                                <Box mt="25px" h="10px" w="127px" borderRadius="20px" bg="#214B6B" >
                                 </Box>
                             </Box>
                             <Box d="flex" justifyContent="space-between" flexDirection="column" alignItems="flex-end">
@@ -63,9 +64,7 @@ export function CardList(){
                             </Box>
                         </Flex>
                      </Flex>
-                     
                 </Box>
-               
             ))}   
         </Flex>
     )
