@@ -48,9 +48,11 @@ export function CardList(){
                             <Box>
                                 <Heading fontSize="28px" fontWeight="semibold">{game.title}</Heading>
                                 <Flex wrap="wrap">
-                                    {game.tags.map( (tag) => (
-                                        <Text key={tag} fontSize="20px" fontWeight="normal" opacity={0.5}>{tag},&nbsp;</Text>
-                                    ))}
+                                    {game.tags.map( (tag, id) => {
+                                        const separator = (id === game.tags.length - 1) ? "" : "," 
+                                        return <Text key={tag} fontSize="20px" fontWeight="normal" opacity={0.5}>{tag+separator}&nbsp;</Text>
+                                    })
+                                    }
                                 </Flex>
                                 <Box mt="25px" h="10px" w="217px" borderRadius="20px" bg="#214B6B" >
                                 </Box>
