@@ -1,4 +1,4 @@
-import {Flex, Text, Heading, Image, Box} from "@chakra-ui/react"
+import {Flex, Text, Heading, Image as ImageUi, Box} from "@chakra-ui/react"
 import { useEffect, useState } from "react";
 import { api } from "../services/api";
 
@@ -42,18 +42,24 @@ export function CardList(){
         <Flex direction={"column"} bg="brand.darkblue" color="brand.white">
             {games.map (game => (
                 <Box key={game.id} m={6} borderRadius='lg' bg="#17202D">
-                     <Flex h="245px" >
-                        <Image borderLeftRadius="8px"  w="50%" src={game.image} alt={game.title}></Image>
-                        <Box pr={4} pl={4} pt={8} w="100%">
-                            <Heading fontSize="28px" fontWeight="semibold">{game.title}</Heading>
-                            <Flex>
-                                {game.tags.map( (tag) => (
-                                    <Text key={tag} fontSize="20px" fontWeight="normal" opacity={0.5}>{tag},&nbsp;</Text>
-                                ))}
-                            </Flex>
-                         
-                            <Heading fontSize="40px" fontWeight="bold" align="right">${game.price}</Heading>
-                        </Box>
+                     <Flex h="245px">
+                        <ImageUi borderLeftRadius="8px"  w="50%" src={game.image} alt={game.title}></ImageUi>
+                        <Flex justifyContent="space-between" pr={4} pl={4} pt={10} pb={5} w="100%" pos="relative">
+                            <Box>
+                                <Heading fontSize="28px" fontWeight="semibold">{game.title}</Heading>
+                                <Flex wrap="wrap">
+                                    {game.tags.map( (tag) => (
+                                        <Text key={tag} fontSize="20px" fontWeight="normal" opacity={0.5}>{tag},&nbsp;</Text>
+                                    ))}
+                                </Flex>
+                                <Box mt="25px" h="10px" w="217px" borderRadius="20px" bg="#214B6B" >
+                                </Box>
+                            </Box>
+                            <Box d="flex" justifyContent="space-between" flexDirection="column" alignItems="flex-end">
+                                <ImageUi src="/assets/Square.svg" w="40px" alt="Square"></ImageUi>
+                                <Heading fontSize="40px" fontWeight="bold">${game.price}</Heading>
+                            </Box>
+                        </Flex>
                      </Flex>
                      
                 </Box>
