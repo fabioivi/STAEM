@@ -1,10 +1,6 @@
-import {Flex, Text, Heading, Image as ImageUi, Box} from "@chakra-ui/react"
-import { useEffect, useState } from "react";
-import { api } from "../services/api";
-
-const url = "https://gqkuommdmfzmwkzdewma.supabase.co/rest/v1/steam?select=*"
-const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdxa3VvbW1kbWZ6bXdremRld21hIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDkyNjQyNTIsImV4cCI6MTk2NDg0MDI1Mn0.iF651HDhqynAQRlG8T6wFS3ZEx4dqxHiEiguc0m7-zI"
-const authorizationKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiJiNjcwZDRjMWE5Zjc1YzdkN2VmMGVjODEiLCJpYXQiOjE2NTA0MTMzOTd9.ma18KOvaDZlBpcoAPNgViS89df9m6GPhr0-FgRtv6Ec" 
+import {Flex, Text, Heading, Image as ImageUi, Box, Spinner} from "@chakra-ui/react"
+import { useEffect, useState, useRef} from "react";
+import { supabase }  from "../services/api";
 
 interface TGame {
     id: number
@@ -17,30 +13,66 @@ interface TGame {
     genre: string
 }
 
-type TGameList = TGame[]
+type TGameList = TGame[] | null
 
-export function CardList(){
-    const [games, setGames] = useState<TGame[]>([])
+interface TFilter {
+    filter: {
+        search: string,
+        sort: "title" | "price",
+        count: number
+    }
+    setFilter: (filter: any ) => void
+}
+
+export function CardList({filter, setFilter}: TFilter){
+    const loadMoreRef = useRef(null)
+
+    const [games, setGames] = useState<TGameList>([])
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const getGames = async () => {
-            const response = await api.get<TGameList>(`${url}`, {
-                headers: {
-                    apikey: apikey,
-                    Authorization: `Bearer ${authorizationKey}`
-                }
-            })
-    
-            const { data } = response
-            console.log(data)
-            setGames(data)
+            try{
+                console.log("filter:"+filter.search)
+                console.log("sort:"+filter.sort)
+                console.log("count:"+filter.count)
+                const {data, error} = await supabase.from("steam").select("*").ilike("title",`%${filter.search}%`).order(`${filter.sort}`, { ascending: true }).limit(filter.count)
+                console.log(data)
+                setGames(data)
+            }catch (error){
+                console.log(error)
+            }
         }
         getGames()
+        setLoading(false);
+    }, [filter.search, filter.sort, filter.count])
+
+    useEffect(() => {
+        const options = {
+            root: null,
+            rootMargin: "20px",
+            threshold: 1.0
+        };
+
+        const observer = new IntersectionObserver((entities) => {
+            const target = entities[0];
+      
+            if (target.isIntersecting){
+                setLoading(true);
+                const newCount = filter.count + 2
+                console.log("carregando : " +  newCount)
+                setFilter({ search: filter.search, sort: filter.sort, count: newCount});
+            }
+        }, options);
+
+        if (loadMoreRef.current){
+            observer.observe(loadMoreRef.current);
+        }
     }, [])
 
     return(
         <Flex direction={"column"} bg="brand.darkblue" color="brand.white">
-            {games.map (game => (
+            {games && games.map (game => (
                 <Box key={game.id} mr="68px" ml="68px" mt="20px" mb="20px" borderRadius="30px" bg="#17202D">
                      <Flex h="245px">
                         <ImageUi borderLeftRadius="30px" w="50%" src={game.image} alt={game.title}></ImageUi>
@@ -49,10 +81,10 @@ export function CardList(){
                                 <Heading fontSize="28px" fontWeight="semibold" lineHeight="26.77px" >{game.title}</Heading>
                                 <Flex wrap="wrap" mt="12px">
                                     {
-                                    game.tags.map( (tag, id) => {
-                                        const separator = (id === game.tags.length - 1) ? "" : "," 
-                                        return <Text key={tag} fontSize="20px"  lineHeight="19.12px" fontWeight="normal" opacity={0.5}>{tag+separator}&nbsp;</Text>
-                                    })
+                                        game.tags.map( (tag, id) => {
+                                            const separator = (id === game.tags.length - 1) ? "" : "," 
+                                            return <Text key={tag} fontSize="20px"  lineHeight="19.12px" fontWeight="normal" opacity={0.5}>{tag+separator}&nbsp;</Text>
+                                        })
                                     }
                                 </Flex>
                                 <Box mt="25px" h="10px" w="127px" borderRadius="20px" bg="#214B6B" >
@@ -65,7 +97,19 @@ export function CardList(){
                         </Flex>
                      </Flex>
                 </Box>
-            ))}   
+            ))}
+            <Flex alignItems="center" justifyContent="center" p="50px" ref={loadMoreRef}>
+                {
+                    loading && 
+                    <Spinner 
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="rgba(255, 255, 255, 0.5)"
+                        color="brand.white"
+                        size="xl">
+                    </Spinner>
+                }
+            </Flex>  
         </Flex>
     )
 }
