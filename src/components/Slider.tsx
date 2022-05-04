@@ -1,4 +1,4 @@
-import { Image } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -11,36 +11,52 @@ import { Navigation, Pagination } from "swiper";
 
 export function Slider() {
   return (
-    <Swiper
-      modules={[Navigation, Pagination]}
-      // navigation
-      pagination={{ clickable: true }}
-      slidesPerView={2}
-      spaceBetween={150}
-      centeredSlides={true}
-      grabCursor={true}
-      loop={true}
-      className="mySwiper"
-    >
-      <SwiperSlide>
-        <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg?t=1649774637" />
-      </SwiperSlide>
+    <Box bg="#1B2837" zIndex={-1}>
+      <Box
+        position="absolute"
+        width="867px"
+        height="346px"
+        left="228px"
+        top="114px"
+        bg="#4D6E95"
+        borderRadius="100px"
+        margin="0 auto"
+        filter="blur(370px)"
+        zIndex={1}
+      >
+      </Box>
 
-      <SwiperSlide>
-        <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1021100/header.jpg?t=1650647590" />
-      </SwiperSlide>
+      <Swiper
+        modules={[Navigation, Pagination]}
+        // navigation
+        pagination={{ clickable: true }}
+        slidesPerView={2}
+        spaceBetween={150}
+        centeredSlides={true}
+        grabCursor={true}
+        loop={true}
+        className="mySwiper"
+      >
+        <SwiperSlide>
+          <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg?t=1649774637" />
+        </SwiperSlide>
 
-      <SwiperSlide>
-        <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1133760/header.jpg?t=1649772146" />
-      </SwiperSlide>
+        <SwiperSlide>
+          <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1446780/header.jpg?t=1647883081" />
+        </SwiperSlide>
 
-      <SwiperSlide>
-        <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1133760/header.jpg?t=1649772146" />
-      </SwiperSlide>
+        <SwiperSlide>
+          <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1599340/header.jpg?t=1651157265" />
+        </SwiperSlide>
 
-      <SwiperSlide>
-        <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1133760/header.jpg?t=1649772146" />
-      </SwiperSlide>
-    </Swiper>
+        <SwiperSlide>
+          <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1021100/header.jpg?t=1650647590" />
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1133760/header.jpg?t=1649772146" />
+        </SwiperSlide>
+      </Swiper>
+    </Box>
   );
 }

@@ -25,7 +25,9 @@ export function Filter({filter, setFilter}: TFilter){
                     fontFamily="Noto Sans" 
                     fontSize="36px" 
                     lineHeight="34.42px"
-                    fontWeight="Bold">
+                    fontWeight="Bold"
+                    zIndex={2}
+                    >
                     New & Trending
                 </Heading>
                 <Box h="10px" w="127px" borderRadius="20px" bg="#214B6B"></Box>
