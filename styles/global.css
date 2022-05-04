@@ -1,6 +1,6 @@
 .mySwiper {
   /* width: 100%; */
-  height: 30vw;
+  height: 35vw;
 
   /* overflow: visible; */
 
@@ -33,16 +33,23 @@
   transform: scale(1.3) !important;
   transition: 0.8s all;
   z-index: 10 !important;
-  /* background: blue; */
   border-radius: 30px !important;
 }
-/*   
+
 .swiper-button-prev:after,
 .swiper-button-next:after {
-    color: #white;
-    font-size: 24px !important;
+  /* background: rgba(255, 255, 255, 0.8) !important; */
+  font-size: 56px !important;
 }
-  
+
+.swiper-pagination-bullet {
+  margin-right: 20px !important;
+  width: 12px !important;
+  height: 12px !important;
+  opacity: 1 !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+
 .swiper-pagination-bullet-active {
-    background: #white !important;
-} */
+  background: white !important;
+}
