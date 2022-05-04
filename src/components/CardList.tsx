@@ -90,7 +90,7 @@ export function CardList({ filter, setFilter }: TFilter) {
             key={game.id}
             mr={{ base: "25px", lg: "68px" }}
             ml={{ base: "25px", lg: "68px" }}
-            mt="20px"
+            mt={{ base: "0px", lg: "20px" }}
             mb="20px"
             borderRadius="30px"
             bg="#17202D"
