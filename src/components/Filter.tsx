@@ -5,7 +5,6 @@ interface TFilter {
     filter: {
         search: string,
         sort: "title" | "price",
-        count: number
     }
     setFilter: (filter: any ) => void
 }
@@ -34,7 +33,7 @@ export function Filter({filter, setFilter}: TFilter){
         
             <Flex  mt="35px" pl="68px" pr="68px" >
                 <Input bg="#1A3A53" borderColor="#1A3A53" borderRadius="30px" width="273px" h="40px" type="text" placeholder="Search" color='white' pl="23px" pr="23px"
-                    onChange={e => setFilter({ search: e.target.value, sort: filter.sort, count: filter.count })}
+                    onChange={e => setFilter({ search: e.target.value, sort: filter.sort})}
                 />
                 <Spacer />
                 <Heading mr="23px"
@@ -46,7 +45,7 @@ export function Filter({filter, setFilter}: TFilter){
                         Sort by:
                 </Heading>
                 <Select  borderRadius="30px" width="273px" h="40px" name="" id="" bg="#1A3A53" borderColor="#1A3A53" color='white'
-                    onChange={e => setFilter({ search: filter.search, sort: e.target.value, count: filter.count })}
+                    onChange={e => setFilter({ search: filter.search, sort: e.target.value})}
                     value={filter.sort}
                 >
                     <option style={{ color: 'black' }} value='price'>Price</option>

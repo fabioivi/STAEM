@@ -19,7 +19,6 @@ interface TFilter {
     filter: {
         search: string,
         sort: "title" | "price",
-        count: number
     }
     setFilter: (filter: any ) => void
 }
@@ -28,6 +27,7 @@ export function CardList({filter, setFilter}: TFilter){
     const loadMoreRef = useRef(null)
 
     const [games, setGames] = useState<TGameList>([])
+    const [page, setPage] = useState(5)
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -35,8 +35,13 @@ export function CardList({filter, setFilter}: TFilter){
             try{
                 console.log("filter:"+filter.search)
                 console.log("sort:"+filter.sort)
-                console.log("count:"+filter.count)
-                const {data, error} = await supabase.from("steam").select("*").ilike("title",`%${filter.search}%`).order(`${filter.sort}`, { ascending: true }).limit(filter.count)
+                console.log(page)
+                const {data, error} = await supabase.from("steam")
+                                                    .select("*")
+                                                    .ilike("title",`%${filter.search}%`)
+                                                    .order(`${filter.sort}`, { ascending: true })
+                                                    .order("title", { ascending: true })
+                                                    .limit(page)
                 console.log(data)
                 setGames(data)
             }catch (error){
@@ -45,7 +50,7 @@ export function CardList({filter, setFilter}: TFilter){
         }
         getGames()
         setLoading(false);
-    }, [filter.search, filter.sort, filter.count])
+    }, [filter.search, filter.sort, page])
 
     useEffect(() => {
         const options = {
@@ -57,11 +62,10 @@ export function CardList({filter, setFilter}: TFilter){
         const observer = new IntersectionObserver((entities) => {
             const target = entities[0];
       
-            if (target.isIntersecting){
-                setLoading(true);
-                const newCount = filter.count + 2
-                console.log("carregando : " +  newCount)
-                setFilter({ search: filter.search, sort: filter.sort, count: newCount});
+            if (target.isIntersecting && loading!==true){
+                setLoading(true)
+                setPage(_page => _page + 1 )
+                console.log("carregando : " +  page)
             }
         }, options);
 
@@ -98,7 +102,7 @@ export function CardList({filter, setFilter}: TFilter){
                      </Flex>
                 </Box>
             ))}
-            <Flex alignItems="center" justifyContent="center" p="50px" ref={loadMoreRef}>
+            <Flex alignItems="center" justifyContent="center" p="60px" ref={loadMoreRef}>
                 {
                     loading && 
                     <Spinner 

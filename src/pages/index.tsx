@@ -11,14 +11,12 @@ import { Slider } from '../components/Slider'
 interface TFilter {
   search: string,
   sort: "title" | "price",
-  count: number,
 }
 
 const Home: NextPage = () => {
   const [filter, setFilter] = useState<TFilter>({
     search: "",
     sort: "price",
-    count: 5
   })
 
   return (
