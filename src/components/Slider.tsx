@@ -1,8 +1,8 @@
-import { Box, Image} from "@chakra-ui/react";
+import { Box, Image, LinkBox, LinkOverlay} from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useMediaQuery } from "@chakra-ui/react";
 
-import { Navigation, Pagination } from "swiper";
+import { Navigation, Pagination, Autoplay} from "swiper";
 import { useEffect, useState } from "react";
 import { supabase } from "../services/api";
 import { SkeletonSlider } from "./SkeletonSlider";
@@ -84,23 +84,24 @@ export function Slider() {
       </Box> */}
 
       <Swiper
-        modules={[Navigation, Pagination]}
+        modules={[Navigation, Pagination, Autoplay]}
         // navigation
         pagination={{ clickable: true }}
         slidesPerView={qtdSlides}
-        spaceBetween={150}
+        spaceBetween={8}
         centeredSlides={true}
         grabCursor={true}
         loop={true}
         className="mySwiper"
         loopedSlides={1}
         initialSlide={2}
+        autoplay={true}
       >
         {
           games?.map( (game) => (
-            <SwiperSlide key={game.id}>
-              <Image src={game.image} alt={game.title}/>
-            </SwiperSlide>
+              <SwiperSlide key={game.id}>
+                  <Image src={game.image} alt={game.title} />
+              </SwiperSlide>
           ))
         }
       </Swiper>
