@@ -9,6 +9,8 @@ import {
 import { useEffect, useState, useRef } from "react";
 import { supabase } from "../services/api";
 
+import { Card } from "../components/Card";
+
 interface TGame {
   id: number;
   title: string;
@@ -84,92 +86,7 @@ export function CardList({ filter, setFilter }: TFilter) {
 
   return (
     <Flex direction={"column"} bg="brand.darkblue" color="brand.white">
-      {games &&
-        games.map((game) => (
-          <Box
-            key={game.id}
-            mr={{ base: "25px", lg: "68px" }}
-            ml={{ base: "25px", lg: "68px" }}
-            mt={{ base: "0px", lg: "20px" }}
-            mb="20px"
-            borderRadius="30px"
-            bg="#17202D"
-          >
-            <Flex
-              h={{ base: "100%", lg: "245px" }}
-              flexDirection={{ base: "column", lg: "row" }}
-            >
-              <ImageUi
-                borderLeftRadius={{ base: "0px", lg: "30px" }}
-                borderTopRightRadius={{ base: "30px", lg: "0px" }}
-                borderTopLeftRadius="30px"
-                w={{ base: "100%", lg: "50%" }}
-                h={{ base: "280px", lg: "100%" }}
-                src={game.image}
-                alt={game.title}
-                objectFit="cover"
-              ></ImageUi>
-              <Flex
-                flexDirection={{ base: "column", lg: "row" }}
-                justifyContent="space-between"
-                pl={{ base: "20px", lg: "51px" }}
-                pt={{ base: "20px", lg: "53px" }}
-                pb={{ base: "20px", lg: "34px" }}
-                pr={{ base: "20px", lg: "34px" }}
-                w="100%"
-                pos="relative"
-              >
-                <Box>
-                  <Heading
-                    fontSize="28px"
-                    fontWeight="semibold"
-                    lineHeight="26.77px"
-                  >
-                    {game.title}
-                  </Heading>
-                  <Flex wrap="wrap" mt="12px">
-                    {game.tags.map((tag, id) => {
-                      const separator = id === game.tags.length - 1 ? "" : ",";
-                      return (
-                        <Text
-                          key={tag}
-                          fontSize="20px"
-                          lineHeight="19.12px"
-                          fontWeight="normal"
-                          opacity={0.5}
-                        >
-                          {tag + separator}&nbsp;
-                        </Text>
-                      );
-                    })}
-                  </Flex>
-                  <Box
-                    mt="25px"
-                    h="10px"
-                    w="127px"
-                    borderRadius="20px"
-                    bg="#214B6B"
-                  ></Box>
-                </Box>
-                <Box
-                  d="flex"
-                  justifyContent="space-between"
-                  flexDirection={{ base: "row", lg: "column" }}
-                  alignItems="flex-end"
-                >
-                  <ImageUi
-                    src="/assets/Square.svg"
-                    w="40px"
-                    alt="Square"
-                  ></ImageUi>
-                  <Heading fontSize="40px" fontWeight="bold">
-                    ${game.price}
-                  </Heading>
-                </Box>
-              </Flex>
-            </Flex>
-          </Box>
-        ))}
+      {games && games.map((game) => <Card key={game.id} {...game} />)}
       <Flex
         alignItems="center"
         justifyContent="center"
