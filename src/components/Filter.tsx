@@ -24,14 +24,20 @@ export function Filter({ filter, setFilter }: TFilter) {
           mr="12px"
           color="brand.white"
           fontFamily="Noto Sans"
-          fontSize="36px"
+          fontSize={{ base: "28px", md: "36px" }}
           lineHeight="34.42px"
           fontWeight="Bold"
+          whiteSpace="nowrap"
           zIndex={2}
         >
           New & Trending
         </Heading>
-        <Box h="10px" w="127px" borderRadius="20px" bg="#214B6B"></Box>
+        <Box
+          h="10px"
+          w={{ base: "100%", md: "127px" }}
+          borderRadius="20px"
+          bg="#214B6B"
+        ></Box>
       </Flex>
 
       <Flex
