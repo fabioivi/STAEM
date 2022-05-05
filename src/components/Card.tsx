@@ -1,4 +1,4 @@
-import { Flex, Text, Heading, Image as ImageUi, Box, LinkBox, LinkOverlay} from "@chakra-ui/react";
+import { Flex, Text, Heading, Image as ImageUi, Box, LinkBox, LinkOverlay, border} from "@chakra-ui/react";
 
 interface TCardProps {
   id: number;
@@ -23,6 +23,11 @@ export function Card({
 }: TCardProps) {
   return (
       <LinkBox
+        _hover={{ 
+          transform: "scale(1.05)", 
+          transition: "0.4s all",
+          bg: "#101720"
+        }}
         key={id}
         mr={{ base: "25px", lg: "68px" }}
         ml={{ base: "25px", lg: "68px" }}
