@@ -1,4 +1,5 @@
-import { Flex, Text, Heading, Image as ImageUi, Box, LinkBox, LinkOverlay, border} from "@chakra-ui/react";
+import { Flex, Text, Heading, Img, Box, LinkBox, LinkOverlay} from "@chakra-ui/react";
+import Link from "next/link";
 
 interface TCardProps {
   id: number;
@@ -22,7 +23,8 @@ export function Card({
   genre,
 }: TCardProps) {
   return (
-      <LinkBox
+    <Link href={link} passHref>
+      <Box
         _hover={{ 
           base: {
             bg: "#101720"
@@ -30,7 +32,8 @@ export function Card({
           lg: {
             transform: "scale(1.05)", 
             transition: "0.4s all",
-            bg: "#101720"
+            bg: "#101720",
+            cursor: "pointer"
           }
         }}
         key={id}
@@ -45,7 +48,8 @@ export function Card({
           h={{ base: "100%", lg: "245px" }}
           flexDirection={{ base: "column", lg: "row" }}
         >
-          <ImageUi
+          
+          <Img
             borderLeftRadius={{ base: "0px", lg: "30px" }}
             borderTopRightRadius={{ base: "30px", lg: "0px" }}
             borderTopLeftRadius="30px"
@@ -54,7 +58,7 @@ export function Card({
             src={image}
             alt={title}
             objectFit="cover"
-          ></ImageUi>
+          ></Img>
           <Flex
             flexDirection={{ base: "column", lg: "row" }}
             justifyContent="space-between"
@@ -101,13 +105,15 @@ export function Card({
               flexDirection={{ base: "row", lg: "column" }}
               alignItems="flex-end"
             >
-              <ImageUi src="/assets/Square.svg" w="40px" alt="Square"></ImageUi>
+              <Img src="/assets/Square.svg" w="40px" alt="Square"></Img>
               <Heading fontSize="40px" fontWeight="bold">
                 ${price}
               </Heading>
             </Box>
           </Flex>
         </Flex>
-      </LinkBox>
+      </Box>
+    </Link>
+
   );
 }
