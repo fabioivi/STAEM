@@ -24,9 +24,14 @@ export function Card({
   return (
       <LinkBox
         _hover={{ 
-          transform: "scale(1.05)", 
-          transition: "0.4s all",
-          bg: "#101720"
+          base: {
+            bg: "#101720"
+          },
+          lg: {
+            transform: "scale(1.05)", 
+            transition: "0.4s all",
+            bg: "#101720"
+          }
         }}
         key={id}
         mr={{ base: "25px", lg: "68px" }}
