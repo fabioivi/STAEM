@@ -28,7 +28,7 @@
 }
 
 .swiper-slide-active {
-  transform: scale(1.3) !important;
+  transform: scale(1.2) !important;
   transition: 0.8s all;
   border-radius: 30px !important;
   opacity: 1;
