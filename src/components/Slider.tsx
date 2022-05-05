@@ -94,7 +94,7 @@ export function Slider() {
         grabCursor={true}
         loop={true}
         className="mySwiper"
-        loopedSlides={1}
+        // loopedSlides={1}
         initialSlide={2}
         autoplay={true}
       >
