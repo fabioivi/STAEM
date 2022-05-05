@@ -1,6 +1,6 @@
 import { Box, Image } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { useMediaQuery } from "@chakra-ui/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -10,9 +10,11 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper";
 
 export function Slider() {
+  const [isLargerThan1280] = useMediaQuery("(min-width: 960px)");
+  const slides = isLargerThan1280 ? 2 : 1;
   return (
     <Box bg="#1B2837" zIndex={-1}>
-      <Box
+      {/* <Box
         position="absolute"
         width="867px"
         height="346px"
@@ -24,13 +26,13 @@ export function Slider() {
         filter="blur(370px)"
         zIndex={1}
       >
-      </Box>
+      </Box> */}
 
       <Swiper
         modules={[Navigation, Pagination]}
         // navigation
         pagination={{ clickable: true }}
-        slidesPerView={2}
+        slidesPerView={slides}
         spaceBetween={150}
         centeredSlides={true}
         grabCursor={true}
