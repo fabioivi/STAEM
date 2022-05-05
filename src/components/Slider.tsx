@@ -1,17 +1,72 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Image} from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useMediaQuery } from "@chakra-ui/react";
+
+import { Navigation, Pagination } from "swiper";
+import { useEffect, useState } from "react";
+import { supabase } from "../services/api";
+import { SkeletonSlider } from "./SkeletonSlider";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+
 // import "swiper/css/scrollbar";
 
-import { Navigation, Pagination } from "swiper";
+interface TGame {
+  id: number;
+  title: string;
+  image: string;
+  price: number;
+  plataforms: string[];
+  tags: string[];
+  link: string;
+  genre: string;
+}
+
+type TGameList = TGame[] | null;
+
+const sliderGames = [
+  "ELDEN RING",
+  "MONSTER HUNTER RISE",
+  "CHRONO CROSS: THE RADICAL DREAMERS EDITION",
+  "THE KING OF FIGHTERS XV",
+  "Neon Flash 2"
+]
 
 export function Slider() {
+  const [games, setGames] = useState<TGameList>([]);
+  const [loading, setLoading] = useState(false);
+
   const [isLargerThan1280] = useMediaQuery("(min-width: 960px)");
-  const slides = isLargerThan1280 ? 2 : 1;
+  const qtdSlides = isLargerThan1280 ? 2 : 1;
+
+  useEffect(() => {
+    const getGames = async () => {
+      try {
+        setLoading(true);
+        const { data, error } = await supabase
+          .from("steam")
+          .select("*")
+          .in("title", sliderGames)
+          .order("title", { ascending: true })
+
+        setLoading(false);
+        setGames(data);
+        console.log(data);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+      }
+    };
+    getGames();
+  }, []);
+
+  if (loading){
+    return <SkeletonSlider />
+  }
+  
   return (
     <Box bg="#1B2837" zIndex={-1}>
       {/* <Box
@@ -32,32 +87,22 @@ export function Slider() {
         modules={[Navigation, Pagination]}
         // navigation
         pagination={{ clickable: true }}
-        slidesPerView={slides}
+        slidesPerView={qtdSlides}
         spaceBetween={150}
         centeredSlides={true}
         grabCursor={true}
         loop={true}
         className="mySwiper"
+        loopedSlides={1}
+        initialSlide={2}
       >
-        <SwiperSlide>
-          <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg?t=1649774637" />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1446780/header.jpg?t=1647883081" />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1599340/header.jpg?t=1651157265" />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1021100/header.jpg?t=1650647590" />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Image src="https://cdn.akamai.steamstatic.com/steam/apps/1133760/header.jpg?t=1649772146" />
-        </SwiperSlide>
+        {
+          games?.map( (game) => (
+            <SwiperSlide key={game.id}>
+              <Image src={game.image} alt={game.title}/>
+            </SwiperSlide>
+          ))
+        }
       </Swiper>
     </Box>
   );
