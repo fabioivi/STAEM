@@ -8,10 +8,10 @@ export function SkeletonSlider(){
 
     if (isLargerThan1280)
         return (
-            <Grid pt="30px" pb="30px" bg="#1B2837" templateColumns='1fr 2.5fr 1fr' gap={6} alignItems="center">
-                <Skeleton borderRightRadius="30px" startColor={startColor} endColor={endColor} opacity={0.4} h={"300px"}></Skeleton>
+            <Grid pt="30px" pb="30px" bg="#1B2837" templateColumns='1fr 2.5fr 1fr' gap="50px" alignItems="center">
+                <Skeleton borderRightRadius="30px" startColor={startColor} endColor={endColor} h={"16vw"} opacity={0.4}></Skeleton>
                 <Skeleton borderRadius="30px" startColor={startColor} endColor={endColor} h={"25vw"}></Skeleton>
-                <Skeleton borderLeftRadius="30px" startColor={startColor} endColor={endColor} opacity={0.4} h={"300px"}></Skeleton>
+                <Skeleton borderLeftRadius="30px" startColor={startColor} endColor={endColor} h={"16vw"} opacity={0.4}></Skeleton>
             </Grid>
         )
     else{
