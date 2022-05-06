@@ -1,5 +1,4 @@
-import { Flex, Text, Heading, Img, Box, LinkBox, LinkOverlay} from "@chakra-ui/react";
-import Link from "next/link";
+import { Flex, Text, Heading, Img, Box } from "@chakra-ui/react";
 
 interface TCardProps {
   id: number;
@@ -23,7 +22,7 @@ export function Card({
   genre,
 }: TCardProps) {
   return (
-    <Link href={link} passHref>
+    <a href={link} target="_blank" rel="noreferrer">
       <Box
         _hover={{ 
           base: {
@@ -71,9 +70,7 @@ export function Card({
           >
             <Box>
               <Heading fontSize="28px" fontWeight="semibold" lineHeight="26.77px">
-                <LinkOverlay href={link}>
                   {title}
-                </LinkOverlay>
               </Heading>
               <Flex wrap="wrap" mt="12px">
                 {tags.map((tag, id) => {
@@ -113,7 +110,7 @@ export function Card({
           </Flex>
         </Flex>
       </Box>
-    </Link>
+    </a>
 
   );
 }
