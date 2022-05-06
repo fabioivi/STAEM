@@ -104,7 +104,7 @@ export function Card({
             >
               <Img src="/assets/Square.svg" w="40px" alt="Square"></Img>
               <Heading fontSize="40px" fontWeight="bold">
-                ${price}
+                { "$"+price.toFixed(2) } 
               </Heading>
             </Box>
           </Flex>
