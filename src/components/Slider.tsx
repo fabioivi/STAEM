@@ -54,7 +54,6 @@ export function Slider() {
 
         setLoading(false);
         setGames(data);
-        console.log(data);
       } catch (error) {
         setLoading(false);
         console.log(error);

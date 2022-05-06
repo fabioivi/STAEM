@@ -47,7 +47,6 @@ export function CardList({ filter, setFilter }: TFilter) {
 
       if (target.isIntersecting) {
         setPage((_page) => _page + 5);
-        console.log("carregando : " + page);
       }
     }, options);
 
@@ -60,9 +59,6 @@ export function CardList({ filter, setFilter }: TFilter) {
     const getGames = async () => {
       try {
         setLoading(true);
-        console.log("filter:" + filter.search);
-        console.log("sort:" + filter.sort);
-        console.log(page);
         const { data, error } = await supabase
           .from("steam")
           .select("*")
@@ -70,7 +66,6 @@ export function CardList({ filter, setFilter }: TFilter) {
           .order(`${filter.sort}`, { ascending: true })
           .order("title", { ascending: true })
           .limit(page);
-        console.log(data);
         setLoading(false);
         setGames(data);
         
