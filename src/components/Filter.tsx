@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { debounce } from "lodash" 
 import { Flex, Box, Heading, Input, Select, Spacer } from "@chakra-ui/react";
+import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
 
 interface TFilter {
   filter: {
@@ -10,10 +11,10 @@ interface TFilter {
 }
 
 export function Filter({ filter, setFilter }: TFilter) {
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("search:" + event.target.value);
-    setFilter({ search: event.target.value, sort: "price" });
-  };
+
+  const handleSearch = debounce( (data: any) => {
+    setFilter({ search: data.search, sort: data.sort });
+  }, 600);
 
   return (
     <Box alignItems="center" pt="40px" pb="40px" bg="brand.darkblue">
@@ -58,7 +59,7 @@ export function Filter({ filter, setFilter }: TFilter) {
           pl="23px"
           pr="23px"
           onChange={(e) =>
-            setFilter({ search: e.target.value, sort: filter.sort })
+            handleSearch({ search: e.target.value, sort: filter.sort })
           }
         />
         <Spacer />
@@ -84,7 +85,7 @@ export function Filter({ filter, setFilter }: TFilter) {
             borderColor="#1A3A53"
             color="white"
             onChange={(e) =>
-              setFilter({ search: filter.search, sort: e.target.value })
+              handleSearch({ search: filter.search, sort: e.target.value })
             }
             value={filter.sort}
           >
