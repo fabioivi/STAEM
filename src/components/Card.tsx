@@ -42,6 +42,7 @@ export function Card({
         mb="20px"
         borderRadius="30px"
         bg="#17202D"
+        transition="1s all"
       >
         <Flex
           h={{ base: "100%", lg: "245px" }}
