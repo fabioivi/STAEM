@@ -1,7 +1,6 @@
-import { Box, Image, LinkBox, LinkOverlay} from "@chakra-ui/react";
+import { Box, Image, LinkBox, LinkOverlay, Link} from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useMediaQuery } from "@chakra-ui/react";
-import Link from "next/link"
 
 import { Navigation, Pagination, Autoplay} from "swiper";
 import { useEffect, useState } from "react";
@@ -100,11 +99,11 @@ export function Slider() {
       >
         {
           games?.map( (game) => (
-              <SwiperSlide key={game.id}>
-                <Link href={game.link} passHref>
+            <SwiperSlide key={game.id}>
+                <a href={game.link} target="blank">
                   <Image src={game.image} alt={game.title} />
-                </Link>
-              </SwiperSlide>
+                </a>
+            </SwiperSlide>
           ))
         }
       </Swiper>
