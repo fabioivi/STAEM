@@ -23,7 +23,27 @@
 
 # Projeto STEAM
 
-O projeto tem como objetivo consumir os dados de jogos do Supabase e SupaDB
+O site tem como objetivo mostrar os principais dados sobre jogos do steam 
+
+Objetivos:
+
+🎯 Alvo: Buscar dados da API fornecida
+🎯 Alvo: Pesquisar jogos por nome
+🎯 Alvo: Ordenar os jogos por "Preço" e "Nome"
+🎯 Alvo: Carrossel
+🎯 Alvo: Design responsivo
+🎯 Alvo: Link externo para a página do jogo na Steam
+
+Extra:
+
+🌟 Extra: Estado de carregamento (loading/skeleton)
+🌟 Extra: Animação hover
+
+Recursos:
+
+📃 Supabase : supabase.com/docs/reference/javascript/select
+📃 Icon : icones.js.org/collection/all
+📃 Hosting : vercel.com
 
 <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/47ij7e4rketxmtakxmkt.png" alt="screenshot site" >
 
