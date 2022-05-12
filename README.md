@@ -1,10 +1,12 @@
+
+
 <div align="center">
   <a href="https://github.com/fabioivi/steam/">
     <h1>STEAM</h1>
   </a>
   <br />
   <br />
-
+  
   <p align="center">
    Site desenvolvido para participar do desafio "I Design, You Build! - Frontend Challenge #4 (Supabase version)" proposto pelo Zernonia
     <br />
@@ -19,33 +21,31 @@
 <!--   ![CircleCI](https://img.shields.io/circleci/build/github/fabioivi/circuit-valley-of-waters-bike/main?token=1d2c257f9c8612051cf385384c8e58dd00e18315)
   [![codecov](https://codecov.io/gh/fabioivi/circuit-valley-of-waters-bike/branch/main/graph/badge.svg?token=FKRYNC3OOP)](https://codecov.io/gh/fabioivi/circuit-valley-of-waters-bike) -->
 
+  
 </div>
 
-# Projeto STEAM
+  <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/47ij7e4rketxmtakxmkt.png" alt="screenshot site" >
 
-O site tem como objetivo mostrar os principais dados sobre jogos do steam 
 
 Objetivos:
 
-🎯 Alvo: Buscar dados da API fornecida
-🎯 Alvo: Pesquisar jogos por nome
-🎯 Alvo: Ordenar os jogos por "Preço" e "Nome"
-🎯 Alvo: Carrossel
-🎯 Alvo: Design responsivo
-🎯 Alvo: Link externo para a página do jogo na Steam
+* 🎯 Alvo: Buscar dados da API fornecida
+* 🎯 Alvo: Pesquisar jogos por nome
+* 🎯 Alvo: Ordenar os jogos por "Preço" e "Nome"
+* 🎯 Alvo: Carrossel
+* 🎯 Alvo: Design responsivo
+* 🎯 Alvo: Link externo para a página do jogo na Steam
 
 Extra:
 
-🌟 Extra: Estado de carregamento (loading/skeleton)
-🌟 Extra: Animação hover
+* 🌟 Extra: Estado de carregamento (loading/skeleton)
+* 🌟 Extra: Animação hover
 
 Recursos:
 
-📃 Supabase : supabase.com/docs/reference/javascript/select
-📃 Icon : icones.js.org/collection/all
-📃 Hosting : vercel.com
-
-<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/47ij7e4rketxmtakxmkt.png" alt="screenshot site" >
+* 📃 Supabase : supabase.com/docs/reference/javascript/select
+* 📃 Icon : icones.js.org/collection/all
+* 📃 Hosting : vercel.com
 
 ### 🛠 Tecnologias
 
