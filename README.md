@@ -25,7 +25,7 @@
 
 O projeto tem como objetivo consumir os dados de jogos do Supabase e SupaDB
 
-<img src="https://github.com/fabioivi/circuit-valley-of-waters-bike/blob/main/.github/images/screenshot-bikesite.jpg" alt="screenshot site" >
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/47ij7e4rketxmtakxmkt.png" alt="screenshot site" >
 
 ### 🛠 Tecnologias
 
